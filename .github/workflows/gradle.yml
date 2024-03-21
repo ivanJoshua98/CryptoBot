@@ -8,16 +8,20 @@ on:
 
 jobs:
   build-container-job:
+    env: 
+      DATABASE_URL_ENV: ${{secrets.DATABASE_URL}}
+      DATABASE_USERNAME_ENV: ${{secrets.DATABASE_USERNAME}}
+      DATABASE_PASSWORD_ENV: ${{secrets.DATABASE_PASSWORD}}
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
       uses: actions/checkout@v3
-    
-    - name: Run docker-compose
-      run: docker-compose up -d
 
     - name: Gradle build
       run: ./gradlew build -x test
+    
+    - name: Run docker-compose
+      run: docker-compose up -d
 
     - name: Gradle test
       run: ./gradlew test
