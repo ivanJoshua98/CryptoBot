@@ -1,16 +1,31 @@
-version: '3.8'
+version: '3.9'
+
 services:
-  db:
+  java_app: 
+    container_name: java_app
+    image: utopy-crypto-bot:1.0.0
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN_ENV}  
+      - BOT_CREATOR_ID=${BOT_CREATOR_ID_ENV}
+      - DATABASE_URL=${DATABASE_URL_ENV}
+      - DATABASE_USERNAME=${DATABASE_USERNAME_ENV}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD_ENV} 
+    depends_on:
+      - java_db
+    build: . 
+  java_db:
+    container_name: java_db
     image: postgres:14.1-alpine
     restart: always
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=cryptobot_dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: cryptobot_dev
     ports:
       - '5432:5432'
     volumes:
-      - db:/var/lib/postgresql/data
+      - java_db:/var/lib/postgresql/data
 volumes:
-  db:
+  java_db:
     driver: local
+    
