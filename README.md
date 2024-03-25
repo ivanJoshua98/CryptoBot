@@ -26,6 +26,6 @@ Este comando levantará la base de datos junto con la aplicación.
 
 ### Tests Backend
 ```
-./gradle test
+./gradlew test
 ```
 Este comando ejecutará los test de la aplicacíon.
