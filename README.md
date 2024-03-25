@@ -20,6 +20,11 @@ En un archivo .env detallamos las credenciales necesarias. Ver el archivo env.ex
 
 ### Iniciar
 ```
+./gradlew build
+```
+Primero debemos contruir el proyecto. Ante cualquier cambio debemos ejecutar este comando nuevamente.
+
+```
 docker-compose up
 ```
 Este comando levantará la base de datos junto con la aplicación.
