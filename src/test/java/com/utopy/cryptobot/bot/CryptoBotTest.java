@@ -72,6 +72,10 @@ public class CryptoBotTest {
 
     @Test
     void whenQuotattionComandIsInvoked_thenRespondWithInformativeMessage() {
+        //Save crypto quotation
+        Crypto newCrypto = new Crypto(CryptoEnum.WLDUSDT.toString(), 1200.00);
+        cryptoService.saveCrypto(newCrypto);
+
         //Incoming update
         Update update = builder.anyUpdateWithText("Cotizacion actual");
 
